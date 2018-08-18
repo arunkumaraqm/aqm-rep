@@ -7,16 +7,16 @@ class QuadraticEqn{
 		int root1, root2;
 	public : 
 		void input();
-		//void compute();
-		//void output();
+		void compute();
+		void output();
 };
 
 void main()
 {
 	QuadraticEqn obj;
 	obj.input();
-	//obj.compute();
-	//obj.output();
+	obj.compute();
+	obj.output();
 }
 void QuadraticEqn :: input()
 {
@@ -36,5 +36,18 @@ void QuadraticEqn :: compute()
 		root1=(-b+temp)/(2*a);
 		root2=(-b-temp)/(2*a);
 	}	
+}
+
+void QuadraticEqn :: output()
+{
+	if(nature_of_roots==0)
+	{
+		printf( "Roots are imaginary.\n");
+	}
+	else
+	{
+		printf( "Roots are ");   printf(root1); 
+		 printf(" and ");  printf(root2);  printf(" .\n");
+	}
 }
 

@@ -24,3 +24,17 @@ void QuadraticEqn :: input()
 	scanf(a); scanf(b); scanf(c);
 	printf("\n");
 }
+
+void QuadraticEqn :: compute()
+{
+	float D = b^2-4*a*c;
+	if( D<0 )
+		nature_of_roots=0;
+	else
+	{
+		float temp= sqrt(D);
+		root1=(-b+temp)/(2*a);
+		root2=(-b-temp)/(2*a);
+	}	
+}
+

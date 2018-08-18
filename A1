@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+class QuadraticEqn{
+	private : 
+		int a,b,c;
+		int nature_of_roots; //0 - imaginary, 1 - real
+		int root1, root2;
+	public : 
+		void input();
+		//void compute();
+		//void output();
+};
+
+void main()
+{
+	QuadraticEqn obj;
+	obj.input();
+	//obj.compute();
+	//obj.output();
+}
+void QuadraticEqn :: input()
+{
+	printf("Enter a,b,c in ax^2 + bx + c : ");
+	scanf(a); scanf(b); scanf(c);
+	printf("\n");
+}

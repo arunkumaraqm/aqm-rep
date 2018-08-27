@@ -1,0 +1,26 @@
+#include <stdio.h>
+	void input(int &marks)
+	{
+		printf("\nEnter Marks for Student : ");
+		scanf("%d",&marks);
+	}
+	void print_grade(int marks)
+	{
+		if(marks>100 || marks<0) printf("\nInvalid Marks.");
+		else if (marks>95) printf("\nGrade = A1");
+		else if (marks>85) printf("\nGrade = A2");
+		else if (marks>75) printf("\nGrade = B1");
+		else if (marks>60) printf("\nGrade = B2");
+		else if (marks>45) printf("\nGrade = C1");
+		else if (marks>40) printf("\nGrade = C2");
+		else if (marks>35) printf("\nGrade = D1");
+		else if (marks>30) printf("\nGrade = D2");
+		else printf("\nGrade = E1");
+	}
+
+void main()
+{
+	int marks;
+	input(marks);
+	print_grade(marks);
+}

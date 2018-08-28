@@ -1,30 +1,25 @@
 /*
-	Program to create following pattern
-	*
-	**
-	***
-	****
-	for any 'n' lines
+	Print Pattern
+	----*
+	---***
+	--*****
+	-*******
+	*********
 */
 #include <stdio.h>
 
-void print_triangle(int nooflines)
+
+int input()
 {
-	int i,j;
-	for(i=1; i<=nooflines; ++i)
-	{
-		for(j=1; j<=i; ++j)
-		{
-			printf("*");
-		}
-		printf("\n");
-	}
+	int nooflines;
+	printf("Enter number of lines : ");
+	scanf("%d",&nooflines);
+	return nooflines;
 }
+
 
 void main()
 {
-	int nooflines;
-	printf("\nEnter no. of lines : ");
-	scanf("%d",&nooflines);
-	print_triangle(nooflines);
+	clrscr();
+	int nooflines=input();
 }

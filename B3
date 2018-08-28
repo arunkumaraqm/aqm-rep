@@ -1,0 +1,35 @@
+/*
+	To Calculate Parking Rates based on Vehicle Type & No. of hours
+	Car : Rs 20/hr for first 2 hrs and then Rs 30/hr for additional hrs
+	Bus : Rs 40/hr for first 4 hrs and then Rs 50/hr for additional hrs
+	Tempo : Rs 30/hr for first 3 hrs and then Rs 40/hr for additional hrs
+*/
+
+#include <stdio.h>
+#include <ctype.h>
+
+class Parking
+{
+	private:
+	char vehc;
+	int noofhrs;
+
+	public:
+	void input();
+	//int compute();
+	//void output();
+};
+void Parking :: input()
+{
+		printf("\nEnter Type of Vehicle (b->bus, t->tempo, c->car) : ");
+		scanf("%c",&vehc);
+		printf("\nEnter Number of Hours : ");
+		scanf("%d",&noofhrs);
+}
+void main()
+{
+	Parking obj;
+	obj.input();
+	//obj.compute();
+	//obj.output();
+}

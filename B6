@@ -3,24 +3,22 @@
 class Matrix{
 	private:
 	int row;
-	int col;
 	int mat[10][10];
 
 	public:
 	void input_mat();
+	void print_diag();
 };
 
 void Matrix :: input_mat()
 {
-	printf("\nEnter No. of Rows : ");
+	printf("\nEnter No. of Rows/Colums for Square Matrix : ");
 	scanf("%d",&row);
-	printf("\nEnter No. of Columns : ");
-	scanf("%d",&col);
 
 	int i, j;
 	for(i=0; i<row; ++i)
 	{
-		for(j=0; j<col; ++j)
+		for(j=0; j<row; ++j)
 		{
 			printf("\nEnter Element (%d,%d) : ",i+1,j+1);
 			scanf("%d",&mat[i][j]);
@@ -28,8 +26,24 @@ void Matrix :: input_mat()
 	}
 }
 
+void Matrix :: print_diag()
+{
+	int i;
+	printf("\nLeft Diagonal\n");
+	for(i=0; i<row; ++i)
+	{
+		printf("%d ",mat[i][i]);
+	}
+	printf("\nRight Diagonal\n");
+	for(i=0; i<row; ++i)
+	{
+		printf("%d ",mat[i][row-i-1]);
+	}
+}
+
 void main()
 {
 	Matrix obj;
 	obj.input_mat();
+	obj.print_diag();
 }

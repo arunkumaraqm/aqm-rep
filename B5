@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+void input(int &a, int &b, int &c)
+{
+	printf("\nEnter three numbers : ");
+	scanf("%d %d %d",&a,&b,&c);
+}
+
+void main()
+{
+	int a, b, c;
+	input(a,b,c);
+}

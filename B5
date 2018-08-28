@@ -6,8 +6,17 @@ void input(int &a, int &b, int &c)
 	scanf("%d %d %d",&a,&b,&c);
 }
 
+int max(int a, int b, int c)
+{
+	int max1;
+	max1 = (a>b) ? a : b;
+	max1 = (max1>c) ? max1 : c;
+	return max1;
+}
+
 void main()
 {
 	int a, b, c;
 	input(a,b,c);
+	max(a,b,c);
 }

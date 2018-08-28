@@ -18,7 +18,7 @@ class Parking
 	public:
 	void input();
 	int compute();
-	//void output();
+	void output();
 };
 void Parking :: input()
 {
@@ -56,12 +56,15 @@ int Parking :: compute()
 	else return invalid();
 	return 0;
 }
+void Parking :: output()
+{
+	printf("\nCost of parking = Rs %d \n", price);
+}
 
 void main()
 {
 	Parking obj;
 	obj.input();
 	if(obj.compute()==-1);
-
-	//else obj.output();
+	else obj.output();
 }

@@ -13,10 +13,11 @@ class Parking
 	private:
 	char vehc;
 	int noofhrs;
+	int price;
 
 	public:
 	void input();
-	//int compute();
+	int compute();
 	//void output();
 };
 void Parking :: input()
@@ -26,10 +27,41 @@ void Parking :: input()
 		printf("\nEnter Number of Hours : ");
 		scanf("%d",&noofhrs);
 }
+
+int invalid()
+{
+	printf("\nInvalid Input.");
+	return -1;
+}
+
+int Parking :: compute()
+{
+	if(noofhrs<=0) return invalid();
+
+	else if(vehc=='C' || vehc=='c')
+	{
+		if(noofhrs<=2) price=20;
+		else 	       price=20+30*(noofhrs-2);
+	}
+	else if(vehc=='B' || vehc=='b')
+	{
+		if(noofhrs<=4)  price=40;
+		else 		price=40+50*(noofhrs-4);
+	}
+	else if(vehc=='T' || vehc=='t')
+	{
+		if(noofhrs<=3)	price=30;
+		else		price=30+40*(noofhrs-3);
+	}
+	else return invalid();
+	return 0;
+}
+
 void main()
 {
 	Parking obj;
 	obj.input();
-	//obj.compute();
-	//obj.output();
+	if(obj.compute()==-1);
+
+	//else obj.output();
 }

@@ -1,6 +1,8 @@
+//Linear Search
 #include <stdio.h>
 
-void input(int* arr, int &size)
+
+void input(int* arr, int &size, int &item)
 {
 	printf("\nEnter number of elements in array : ");
 	scanf("%d",&size);
@@ -11,9 +13,14 @@ void input(int* arr, int &size)
 		printf("\n Enter element %d : ",i+1);
 		scanf("%d",cur);
 	}
+	printf("\n Enter element to find : ");
+	scanf("%d",&item);
 }
 void main()
 {
-	int *arr, size;
-	input(arr,size);
+	int *arr, size, item;
+	input(arr,size,item);
+	//compute(arr,size);
+
+
 }

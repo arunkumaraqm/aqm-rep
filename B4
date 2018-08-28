@@ -1,15 +1,15 @@
 #include <stdio.h>
 
-
 void input(int* arr, int &size)
 {
 	printf("\nEnter number of elements in array : ");
 	scanf("%d",&size);
 	arr=new int [size];
-	for(int i=0; i<size; ++i)
+	int *cur=arr;
+	for(int i=0; i<size; ++i, ++cur)
 	{
 		printf("\n Enter element %d : ",i+1);
-		scanf("%d",&arr[i]);
+		scanf("%d",cur);
 	}
 }
 void main()

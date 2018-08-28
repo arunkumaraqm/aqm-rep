@@ -14,9 +14,14 @@ int max(int a, int b, int c)
 	return max1;
 }
 
+void output(int max1)
+{
+	printf("\nMaximum of the three given numbers is %d .",max1);
+}
+
 void main()
 {
 	int a, b, c;
 	input(a,b,c);
-	max(a,b,c);
+	output( max(a,b,c) );
 }

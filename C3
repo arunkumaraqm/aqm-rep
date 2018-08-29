@@ -1,0 +1,42 @@
+
+#include <stdio.h>
+
+struct Student
+{
+        int roll;
+        char name[32];
+        char dept[4];
+        int marks;
+        char grade;
+};
+
+void input_record(struct Student S)
+{
+        printf("\nEnter Roll Number of Student : ");
+        scanf("%d", &S.roll);       
+        printf("\nEnter Name of Student        : ");
+        scanf("%s", &S.name);
+        printf("\nEnter Dept of Student        : ");
+        scanf("%s", &S.dept);
+        printf("\nEnter Marks of Student       : ");
+        scanf("%d", &S.marks);
+}
+
+char calc_grade(int marks)
+{
+        if(marks>=100 && marks>81) return 'A';
+        if(marks>61) return 'B';
+        if(marks>51) return 'C';
+        if(marks>41) return 'D';
+        if(marks>31) return 'E';
+        else         return 'F';        
+}
+
+int main()
+{
+        struct Student S[10];
+        input_record(S[0]);
+        S[0].grade=calc_grade(S[0].marks);
+
+        return 0;
+}

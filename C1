@@ -6,24 +6,36 @@ struct List
         int size;
 };       
         
-void input(struct List obj)
+void input(struct List *objptr)
 {
         printf("\nEnter No. of Elements in Array : ");
-        scanf("%d", &obj.size);
-        obj.arr=malloc(obj.size*sizeof(*obj.arr));
-        int* cur=obj.arr, i;
-        for(i=0; i<obj.size; ++i, ++cur)
+        scanf("%d", &(*objptr).size);
+        
+        (*objptr).arr = malloc( (*objptr).size * sizeof (* (*objptr).arr) );
+        
+        int* cur=(*objptr).arr, i;
+        for(i=0; i<(*objptr).size; ++i, ++cur)
         {
                 printf("\nEnter Element %d : ",i+1);
                 scanf("%d", cur);
         }
-        free(obj.arr);
+}
+
+void output(struct List obj)
+{
+        printf("\nSorted Array : ");
+        int* cur= obj.arr, i;
+        for(i=0; i<obj.size; ++i, ++cur)
+        {
+                printf("%d ", *cur);
+        }
 }
         
 int main()
 {
         struct List obj;      
-        input(obj);
-
+        input(&obj);
+        output(obj);
+        free(obj.arr);
         return 0;
 }

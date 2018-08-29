@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 
 struct List
@@ -21,6 +22,24 @@ void input(struct List *objptr)
         }
 }
 
+void BubbleSort(struct List *objptr)
+{
+        int i, j, temp, arrsize=(*objptr).size;
+    
+        for(i=0; i<arrsize; ++i)
+        {
+                for(j=1; j<arrsize-i; ++j)
+                {
+                        if( (*objptr).arr[j-1] > (*objptr).arr[j] )
+                        {
+                                temp= (*objptr).arr[j-1];
+                                (*objptr).arr[j-1] = (*objptr).arr[j];
+                                (*objptr).arr[j] = temp;
+                        }
+                }
+        }
+}
+
 void output(struct List obj)
 {
         printf("\nSorted Array : ");
@@ -35,6 +54,7 @@ int main()
 {
         struct List obj;      
         input(&obj);
+        BubbleSort(&obj);
         output(obj);
         free(obj.arr);
         return 0;

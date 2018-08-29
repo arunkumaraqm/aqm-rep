@@ -10,18 +10,32 @@ struct Student
         char grade;
 };
 
-void input_record(struct Student S)
+void input_record(struct Student * Sptr)
 {
         printf("\nEnter Roll Number of Student : ");
-        scanf("%d", &S.roll);       
+        scanf("%d", &(*Sptr).roll);       
         printf("\nEnter Name of Student        : ");
-        scanf("%s", &S.name);
+        scanf("%s", &(*Sptr).name);
         printf("\nEnter Dept of Student        : ");
-        scanf("%s", &S.dept);
+        scanf("%s", &(*Sptr).dept);
         printf("\nEnter Marks of Student       : ");
-        scanf("%d", &S.marks);
+        scanf("%d", &(*Sptr).marks);
 }
 
+void output_record(struct Student S)
+{
+        
+        printf("\nRoll Number of Student : ");
+        printf("%d", S.roll);       
+        printf("\nName of Student        : ");
+        printf("%s", S.name);
+        printf("\nDept of Student        : ");
+        printf("%s", S.dept);
+        printf("\nMarks of Student       : ");
+        printf("%d", S.marks);
+        printf("\nGrade of Student       : ");
+        printf("%c", S.grade);
+}
 char calc_grade(int marks)
 {
         if(marks>=100 && marks>81) return 'A';
@@ -35,8 +49,8 @@ char calc_grade(int marks)
 int main()
 {
         struct Student S[10];
-        input_record(S[0]);
+        input_record(&S[0]);
         S[0].grade=calc_grade(S[0].marks);
-
+        output_record(S[0]);
         return 0;
 }

@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+void input(int* n)
+{
+    printf("\nEnter number of results required: ");
+    scanf("%d", n);
+}
+
+void output(int size)
+{
+    int curnum, prevnum, i,temp;
+    printf("\nFibonacci series : ");
+    printf("%d ", 1);
+    for(i=1,curnum=1, prevnum=1; i<size; ++i)
+    {
+        printf("%d ", curnum);
+        temp=curnum;
+        curnum=curnum+prevnum;
+        prevnum=temp;
+    }
+}
+void main()
+{
+    int n;
+    input(&n);
+    output(n);
+}

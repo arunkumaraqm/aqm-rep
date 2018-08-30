@@ -1,0 +1,82 @@
+#include<stdio.h>
+
+void inputsize(int *size)
+{
+    printf("Enter Size of Array : ");
+    scanf("%d",size);
+}
+
+int inputarr(int size, int arr[size])
+{
+    int *cur=arr, *prev=arr;
+    printf("Input Array in Ascending Order\n");
+   
+    ///Reading First Element 
+    printf("Enter element %d : ",1);
+    scanf("%d", cur);
+    ++cur;
+    
+    for(int i=1; i<size; ++i,++cur,++prev)
+    {
+        printf("Enter element %d : ",i+1);
+        scanf("%d", cur);
+        
+        //Verify Ascending
+        if(*cur<*prev)
+        {
+            printf("\nInvalid Entry");
+            return -1;
+        }
+    }
+}
+
+void inputitem(int *item)
+{
+    printf("Enter Item to search for : ");
+    scanf("%d",item);
+}
+
+int binary_search(int size, int arr[size], int item)
+{
+    int beg=0, end=size-1, mid=(beg+end)/2, pos=-1;
+    char temp;
+    //printf("%d", mid);
+    
+    while(beg!=mid)
+    {
+       
+        if(item<arr[mid]) { end=mid; }
+        
+        else if (item>arr[mid]) { beg=mid; }
+        
+        else
+        {
+            pos=mid;
+            break;
+        }
+        mid=(beg+end)/2;
+    }
+    return pos;
+}
+
+void output(int arr[], int pos)
+{
+    if(pos==-1)
+    printf("\nElement not found.");
+    else
+    printf("\nThe element %d was found at position %d.",arr[pos],pos+1);
+}
+void main()
+{
+    int size, item;
+    inputsize(&size);
+    int arr[size];
+  
+    if(inputarr(size,arr)==-1) return;
+    
+    inputitem(&item);
+    
+    int pos=binary_search(size,arr,item);
+    output(arr,pos);
+    
+}

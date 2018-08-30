@@ -29,7 +29,7 @@ void input_mat(int row, int col, int mat[row][col], int matnum)
         
         printf("\nFor Matrix %d,\n", matnum);
         
-        for(i=0; i<row; ++i, ++cur)
+        for(i=0; i<row; ++i)
         {
                 for(j=0; j<col; ++j, ++cur)
                 {
@@ -37,6 +37,7 @@ void input_mat(int row, int col, int mat[row][col], int matnum)
                         scanf("%d",cur);
                 }
         }
+        
 }
 
 void output_mat(int row, int col, int mat[row][col], int matnum)
@@ -45,7 +46,7 @@ void output_mat(int row, int col, int mat[row][col], int matnum)
         
         printf("\nMatrix %d,\n\n", matnum);
         
-        for(i=0; i<row; ++i, ++cur)
+        for(i=0; i<row; ++i)
         {
                 for(j=0; j<col; ++j, ++cur)
                 {
@@ -55,20 +56,21 @@ void output_mat(int row, int col, int mat[row][col], int matnum)
         }
 }
 
-void multiply(int row1, int row2, int col2, int mat1[row1][row2], int mat2[row2][col2])
+void multiply(int row1, int row2, int col2, int mat1[row1][row2], int mat2[row2][col2], int mat3[row1][col2])
 {
-        int mat3[row1][col2], i, j, k;
+        int i, j, k, *cur=mat3;
         
         for(i=0; i<row1; ++i)
         {
-                for(j=0; j<col2; ++j)
+                for(j=0; j<col2; ++j, ++cur)
                 {
-                        mat3[i][j]=0;
+                        *cur=0;
                         
                         for(k=0; k<row2; ++k)
                         {
-                                mat3[i][j]+=mat1[i][k] + mat2[k][j];
+                                *cur+=mat1[i][k] * mat2[k][j];
                         }
+                        
                 }
         }
         
@@ -77,18 +79,32 @@ void multiply(int row1, int row2, int col2, int mat1[row1][row2], int mat2[row2]
 void main()
 {
         int row1,col1,row2,col2;
+        row1=col1=row2=2; col2=3;
         input_sizes(&row1,&col1,&row2,&col2);
         if( chk_sizes(col1,row2) == -1) return;
         
-        int mat1[row1][col1], mat2[row2][col2];
+        int mat1[row1][col1], mat2[row2][col2], mat3[row1][col2];
         
         input_mat(row1, col1, mat1, 1);
         output_mat(row1, col1, mat1, 1);
         
         input_mat(row2, col2, mat2, 2);
         output_mat(row2, col2, mat2, 2);
+        /*
+        //test
+        int mat1[row1][col1], mat2[row2][col2], mat3[row1][col2];
         
-        //multiply(row1,row2,col2,mat1,mat2);
+        mat1[0][0]=1; mat1[0][1]=2;
+        mat1[1][0]=3; mat1[1][1]=4;
+        
+        mat2[0][0]=5; mat2[0][1]=6; mat2[0][2]=1;
+        mat2[1][0]=2; mat2[1][1]=3; mat2[1][2]=4;
+       
+        output_mat(row1, col1, mat1, 1);
+        output_mat(row2, col2, mat2, 2);
+        */
+        multiply(row1, row2, col2, mat1, mat2, mat3);
+        output_mat(row1, col2, mat3, 3);
         
         
 }

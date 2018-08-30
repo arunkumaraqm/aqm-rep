@@ -1,0 +1,48 @@
+#include <stdio.h>
+
+int fact(int num)
+{
+	if(num==0) return 1;
+
+	int pro=1;
+	for( ; num>0; --num)
+	{
+		pro*=num;
+	}
+	return pro;
+}
+int nPr(int n, int r)
+{
+	return (fact(n))/(fact(n-r)); //Repetition allowed
+}
+
+int nCr(int n, int r)
+{
+	return fact(n)/(fact(r)*fact(n-r)); //Reptition not allowed
+}
+
+
+int input(int *n, int *r)
+{
+	printf("\nEnter n and r values (max=7 for either) : ");//int value range is exceeded otherwise
+	scanf("%d %d",n,r);
+	if(n<r)
+	{
+		printf("\nInvalid Input");
+		return -1;
+	}
+	else return 0;
+}
+
+void output(int n, int r)
+{
+	printf("\n%d P %d = %d", n, r, nPr(n,r));
+	printf("\n%d C %d = %d", n, r, nCr(n,r));
+}
+
+void main()
+{
+	int n,r;
+	if(input(&n,&r)==-1) return;
+	output(n,r);
+}

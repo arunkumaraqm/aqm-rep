@@ -1,8 +1,8 @@
 #include <stdio.h>
-	void input(int &marks)
+	void input(int *marks)
 	{
 		printf("\nEnter Marks for Student : ");
-		scanf("%d",&marks);
+		scanf("%d",marks);
 	}
 	void print_grade(int marks)
 	{
@@ -21,6 +21,6 @@
 void main()
 {
 	int marks;
-	input(marks);
+	input(&marks);
 	print_grade(marks);
 }

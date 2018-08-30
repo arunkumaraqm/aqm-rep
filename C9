@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+void input_size(int *row)
+{
+        printf("\nEnter No. of Rows for Square Matrix : ");
+        scanf("%d",row);
+}
+
+void input_matrix(int row, int mat[row][row])
+{
+        printf("\nReading Matrix");
+        int *cur=mat, i, j;
+        for(i=0; i<row; ++i)
+        {
+                for(j=0; j<row; ++j, ++cur)
+                {
+                        printf("\nEnter Element (%d,%d) : ",i+1,j+1);
+                        scanf("%d",cur);
+                }
+        }
+}
+
+
+void output_matrix(int row, int mat[row][row])
+{
+        printf("\nMatrix is\n");
+        int *cur=mat, i, j;
+        for(i=0; i<row; ++i)
+        {
+                for(j=0; j<row; ++j, ++cur)
+                {
+                        printf("%d  ",*cur);
+                }
+                printf("\n");
+        }
+}
+int chk_symmetry(int row, int mat[row][row])
+{
+        int i,j;
+        int *cur=mat;
+        for(i=0;i<row;++i)
+        {
+                for(j=i+1;j<row;++j)
+                {
+                        if(mat[i][j]!=mat[j][i])
+                        {
+                                return -1;
+                        }
+                }
+        }
+        return 1;
+}
+
+void output(int flag)
+{
+        (flag==-1) ? printf("\nMatrix is not symmetric.") : printf("\nMatrix is symmetric.");
+}
+
+void main()
+{
+        int size;
+        input_size(&size);
+        int mat[size][size];
+        input_matrix(size,mat);
+        output_matrix(size,mat);
+        int temp = chk_symmetry(size,mat);
+        output(temp);
+}

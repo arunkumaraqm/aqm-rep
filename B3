@@ -8,24 +8,19 @@
 #include <stdio.h>
 #include <ctype.h>
 
-class Parking
+struct Parking
 {
-	private:
 	char vehc;
 	int noofhrs;
 	int price;
-
-	public:
-	void input();
-	int compute();
-	void output();
 };
-void Parking :: input()
+
+void input(struct Parking *P)
 {
 		printf("\nEnter Type of Vehicle (b->bus, t->tempo, c->car) : ");
-		scanf("%c",&vehc);
+		scanf("%c",&(*P).vehc);
 		printf("\nEnter Number of Hours : ");
-		scanf("%d",&noofhrs);
+		scanf("%d",&(*P).noofhrs);
 }
 
 int invalid()
@@ -34,37 +29,38 @@ int invalid()
 	return -1;
 }
 
-int Parking :: compute()
+int get_fare(struct Parking *P)
 {
-	if(noofhrs<=0) return invalid();
+	if((*P).noofhrs<=0) return invalid();
 
-	else if(vehc=='C' || vehc=='c')
+	else if((*P).vehc=='C' || (*P).vehc=='c')
 	{
-		if(noofhrs<=2) price=20;
-		else 	       price=20+30*(noofhrs-2);
+		if((*P).noofhrs<=2) (*P).price=20;
+		else 	       (*P).price=20+30*((*P).noofhrs-2);
 	}
-	else if(vehc=='B' || vehc=='b')
+	else if((*P).vehc=='B' || (*P).vehc=='b')
 	{
-		if(noofhrs<=4)  price=40;
-		else 		price=40+50*(noofhrs-4);
+		if((*P).noofhrs<=4)  (*P).price=40;
+		else 		(*P).price=40+50*((*P).noofhrs-4);
 	}
-	else if(vehc=='T' || vehc=='t')
+	else if((*P).vehc=='T' || (*P).vehc=='t')
 	{
-		if(noofhrs<=3)	price=30;
-		else		price=30+40*(noofhrs-3);
+		if((*P).noofhrs<=3) (*P).price=30;
+		else		(*P).price=30+40*((*P).noofhrs-3);
 	}
 	else return invalid();
+	
 	return 0;
 }
-void Parking :: output()
+void output(struct Parking P)
 {
-	printf("\nCost of parking = Rs %d \n", price);
+	printf("\nCost of parking = Rs %d \n", P.price);
 }
 
 void main()
 {
-	Parking obj;
-	obj.input();
-	if(obj.compute()==-1);
-	else obj.output();
+	struct Parking obj;
+	input(&obj);
+	if(get_fare(&obj)==-1);
+	else output(obj);
 }

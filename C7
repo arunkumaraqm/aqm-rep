@@ -23,11 +23,72 @@ int chk_sizes(int c1, int r2)
         return 1;
 }
 
+void input_mat(int row, int col, int mat[row][col], int matnum)
+{
+        int *cur=mat, i, j;
+        
+        printf("\nFor Matrix %d,\n", matnum);
+        
+        for(i=0; i<row; ++i, ++cur)
+        {
+                for(j=0; j<col; ++j, ++cur)
+                {
+                        printf("\nEnter element (%d,%d) : ", i+1, j+1);
+                        scanf("%d",cur);
+                }
+        }
+}
+
+void output_mat(int row, int col, int mat[row][col], int matnum)
+{
+        int *cur=mat, i, j;
+        
+        printf("\nMatrix %d,\n\n", matnum);
+        
+        for(i=0; i<row; ++i, ++cur)
+        {
+                for(j=0; j<col; ++j, ++cur)
+                {
+                        printf("%d  ",*cur);
+                }
+                printf("%c",'\n');
+        }
+}
+
+void multiply(int row1, int row2, int col2, int mat1[row1][row2], int mat2[row2][col2])
+{
+        int mat3[row1][col2], i, j, k;
+        
+        for(i=0; i<row1; ++i)
+        {
+                for(j=0; j<col2; ++j)
+                {
+                        mat3[i][j]=0;
+                        
+                        for(k=0; k<row2; ++k)
+                        {
+                                mat3[i][j]+=mat1[i][k] + mat2[k][j];
+                        }
+                }
+        }
+        
+}
+
 void main()
 {
         int row1,col1,row2,col2;
         input_sizes(&row1,&col1,&row2,&col2);
         if( chk_sizes(col1,row2) == -1) return;
+        
+        int mat1[row1][col1], mat2[row2][col2];
+        
+        input_mat(row1, col1, mat1, 1);
+        output_mat(row1, col1, mat1, 1);
+        
+        input_mat(row2, col2, mat2, 2);
+        output_mat(row2, col2, mat2, 2);
+        
+        //multiply(row1,row2,col2,mat1,mat2);
         
         
 }

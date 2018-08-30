@@ -1,0 +1,31 @@
+#include<stdio.h>
+ 
+void input(int *one, int *two)
+{
+   printf("\nEnter the First number : ");
+   scanf("%d", one);
+   printf("\nEnter the Second number : ");
+   scanf("%d", two);
+ 
+}
+
+void swap(int *one, int *two) 
+{
+   int temp = *one;
+   *one = *two;
+   *two = temp;
+}
+ 
+void output(int one, int two)
+{
+   printf("\nFirst number  : %d", one);
+   printf("\nSecond number : %d", two);
+}
+
+void main() 
+{
+   int num1, num2;
+   input(&num1,&num2);
+   swap(&num1, &num2);
+   output(num1,num2);
+}

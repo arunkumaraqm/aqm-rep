@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<math.h>
+
+void input(int *number)
+{
+        printf("\nEnter Number : ");
+        scanf("%d",number);
+        
+}
+void chk_armstrong(int number)
+{
+        if(number<10)
+        printf("\nSingle digit numbers and negative numbers are not Armstrong numbers.");
+        
+        int i,noofdigits,sum, dupl_number=number;
+        
+        for(i=1;number!=0;++i)number=number/10;
+       
+        noofdigits=i-1;
+        sum=0;
+        number=dupl_number;
+        
+        for(i=1;number!=0;++i)
+        {
+                sum+=pow(number%10,noofdigits);
+                number=number/10;
+        }
+        
+        if(sum==dupl_number)
+        {
+                printf("\nGiven number is an Armstrong Number.");
+        }
+        else
+                printf("\nGiven number is not an Armstrong Number.");
+}
+
+void main()
+{
+        int number; char temp;
+        input(&number);
+        chk_armstrong(number);
+}

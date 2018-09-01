@@ -27,19 +27,25 @@ void input_record(struct Student * Sptr)
         scanf("%d", &Sptr->marks); //Invalid Marks Condition To be Added */
 }
 
-void output_record(struct Student *S)
+void input_item(int *item)
 {
-        
+        printf("\nEnter Roll Number of Student to Search for : ");
+        scanf("%d", item);   
+}
+
+void output_record(struct Student *Sptr)
+{
+        //Segfault in this funcn
         printf("\nRoll Number of Student : ");
-        printf("%d", S->roll);       /*
+        printf("%d", Sptr->roll);       /*
         printf("\nName of Student        : ");
-        printf("%s", S->name);
+        printf("%s", Sptr->name);
         printf("\nDept of Student        : ");
-        printf("%s", S->dept);
+        printf("%s", Sptr->dept);
         printf("\nMarks of Student       : ");
-        printf("%d", S->marks);
+        printf("%d", Sptr->marks);
         printf("\nGrade of Student       : ");
-        printf("%c", S->grade);*/
+        printf("%c", Sptr->grade);*/
 }
 char calc_grade(int marks)
 {/*
@@ -50,21 +56,74 @@ char calc_grade(int marks)
         if(marks>31) return 'E';
         else         return 'F';      */
 }
-
-void input_all_records(int size; struct Student S[size][size],int size)
+/*
+void input_all_records(int *size; struct Student S[*size], int *size)
 {
+        
+        printf("\nSize = %d",*size);
         struct Student *cur=S;
-        for(int i=0;i<size;++i,++cur)
+        
+        printf("\nSize = %d",*size);
+        for(int i=0; i<size; ++i,++cur)
         {
             input_record(cur);
             output_record(cur);
         }
+}*/
+
+void input_all_records(int size, struct Student *arr)
+{
+        struct Student *cur = arr;
+        for(int i=0; i<size; ++i, ++cur)
+        {
+                printf("\nFor Student %d,",i+1);
+                input_record(cur);
+        }
 }
+
+int linear_search(int size, struct Student *arr, int item)
+{
+        struct Student *cur = arr;
+        for(int i=0; i<size; ++i, ++cur)
+        {
+                if(cur->roll == item)
+                {
+                        return i+1;
+                }
+        }       
+        return -1;
+}
+
+void output_pos(int size, int *arr, int pos)
+{
+        
+        if(pos==-1)
+        {
+                printf("\nStudent with given roll number does not exist.");
+        }
+        else
+        {
+                output_record(arr[pos]);
+        }
+}
+
 int main()
 {
-        int size;
+        int size, item;
+        char yn; //yes/no
         inputsize(&size);
         struct Student S[size];
         input_all_records(size,S);
+        
+        do{
+                input_item(&item);  
+                output_pos( size, S, linear_search(size,S,item) );
+                
+                scanf("%c",&yn);//Inputs unnecessary newline char
+                printf("\nSearch Again ? ( Y->Yes / N->No ) : ");
+                scanf("%c",&yn);
+                
+        }while(yn=='y'||yn=='Y');
+        
         return 0;
 }

@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 struct Student
@@ -10,47 +9,62 @@ struct Student
         char grade;
 };
 
+void inputsize(int *size)
+{
+        printf("\nEnter Number of Students : ");
+        scanf("%d", size);  
+}
+
 void input_record(struct Student * Sptr)
 {
         printf("\nEnter Roll Number of Student : ");
-        scanf("%d", &(*Sptr).roll);       
+        scanf("%d", &Sptr->roll);   /*    
         printf("\nEnter Name of Student        : ");
-        scanf("%s", &(*Sptr).name);
+        scanf("%s", &Sptr->name);
         printf("\nEnter Dept of Student        : ");
-        scanf("%s", &(*Sptr).dept);
+        scanf("%s", &Sptr->dept);
         printf("\nEnter Marks of Student       : ");
-        scanf("%d", &(*Sptr).marks);
+        scanf("%d", &Sptr->marks); //Invalid Marks Condition To be Added */
 }
 
-void output_record(struct Student S)
+void output_record(struct Student *S)
 {
         
         printf("\nRoll Number of Student : ");
-        printf("%d", S.roll);       
+        printf("%d", S->roll);       /*
         printf("\nName of Student        : ");
-        printf("%s", S.name);
+        printf("%s", S->name);
         printf("\nDept of Student        : ");
-        printf("%s", S.dept);
+        printf("%s", S->dept);
         printf("\nMarks of Student       : ");
-        printf("%d", S.marks);
+        printf("%d", S->marks);
         printf("\nGrade of Student       : ");
-        printf("%c", S.grade);
+        printf("%c", S->grade);*/
 }
 char calc_grade(int marks)
-{
+{/*
         if(marks>=100 && marks>81) return 'A';
         if(marks>61) return 'B';
         if(marks>51) return 'C';
         if(marks>41) return 'D';
         if(marks>31) return 'E';
-        else         return 'F';        
+        else         return 'F';      */
 }
 
+void input_all_records(int size; struct Student S[size][size],int size)
+{
+        struct Student *cur=S;
+        for(int i=0;i<size;++i,++cur)
+        {
+            input_record(cur);
+            output_record(cur);
+        }
+}
 int main()
 {
-        struct Student S[10];
-        input_record(&S[0]);
-        S[0].grade=calc_grade(S[0].marks);
-        output_record(S[0]);
+        int size;
+        inputsize(&size);
+        struct Student S[size];
+        input_all_records(size,S);
         return 0;
 }

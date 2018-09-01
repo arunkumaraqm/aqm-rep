@@ -1,20 +1,17 @@
 #include <stdio.h>
 
-struct Matrix{
-	int row;
-	int mat[10][10];
-};
-
-void input_mat(struct Matrix *M)
+void input_size(int *row)
 {
 	printf("\nEnter No. of Rows/Colums for Square Matrix : ");
-	scanf("%d",&(*M).row);
-
+	scanf("%d",row);
+}
+void input_mat(int row, int mat[row][row])
+{
 	int i, j;
-	int *cur=(*M).mat;
-	for(i=0; i<(*M).row; ++i)
+	int *cur=mat;
+	for(i=0; i<row; ++i)
 	{
-		for(j=0; j<(*M).row; ++j, ++cur)
+		for(j=0; j<row; ++j, ++cur)
 		{
 			printf("\nEnter Element (%d,%d) : ",i+1,j+1);
 			scanf("%d",cur);
@@ -22,24 +19,27 @@ void input_mat(struct Matrix *M)
 	}
 }
 
-void print_diag(struct Matrix M)
+void print_diag(int row, int mat[row][row])
 {
 	int i;
 	printf("\nLeft Diagonal\n");
-	for(i=0; i<M.row; ++i)
+	for(i=0; i<row; ++i)
 	{
-		printf("%d ",M.mat[i][i]);
+		printf("%d ",mat[i][i]);
 	}
+	
 	printf("\nRight Diagonal\n");
-	for(i=0; i<M.row; ++i)
+	for(i=0; i<row; ++i)
 	{
-		printf("%d ",M.mat[i][M.row-i-1]);
+		printf("%d ",mat[i][row-i-1]);
 	}
 }
 
 void main()
 {
-	struct Matrix obj;
-	input_mat(&obj);
-	print_diag(obj);
+	int row;
+	input_size(&row);
+	int mat[row][row];
+	input_mat(row,mat);
+	print_diag(row,mat);
 }

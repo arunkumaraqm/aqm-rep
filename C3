@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <conio.h>
 
 struct Student
 {
@@ -16,15 +17,16 @@ void inputsize(int *size)
 }
 
 void input_record(struct Student * Sptr)
-{
-        printf("\nEnter Roll Number of Student : ");
-        scanf("%d", &Sptr->roll);   /*    
+{   
         printf("\nEnter Name of Student        : ");
         scanf("%s", &Sptr->name);
+        printf("\nEnter Roll Number of Student : ");
+        scanf("%d", &Sptr->roll);
         printf("\nEnter Dept of Student        : ");
         scanf("%s", &Sptr->dept);
         printf("\nEnter Marks of Student       : ");
-        scanf("%d", &Sptr->marks); //Invalid Marks Condition To be Added */
+        scanf("%d", &Sptr->marks); //Invalid Marks Condition To be Added 
+        Sptr->grade=(char)calc_grade(Sptr->marks);
 }
 
 void input_item(int *item)
@@ -35,47 +37,34 @@ void input_item(int *item)
 
 void output_record(struct Student *Sptr)
 {
-        //Segfault in this funcn
-        printf("\nRoll Number of Student : ");
-        printf("%d", Sptr->roll);       /*
+        printf("\nDetails of Student - ");
         printf("\nName of Student        : ");
         printf("%s", Sptr->name);
+        printf("\nRoll Number of Student : ");
+        printf("%d", Sptr->roll);       
         printf("\nDept of Student        : ");
         printf("%s", Sptr->dept);
         printf("\nMarks of Student       : ");
         printf("%d", Sptr->marks);
         printf("\nGrade of Student       : ");
-        printf("%c", Sptr->grade);*/
+        printf("%c", Sptr->grade);
 }
-char calc_grade(int marks)
-{/*
-        if(marks>=100 && marks>81) return 'A';
+int calc_grade(int marks) //Shows err if I change return type to char; this works fine
+{
+        if(marks<=100 && marks>81) return 'A';
         if(marks>61) return 'B';
         if(marks>51) return 'C';
         if(marks>41) return 'D';
         if(marks>31) return 'E';
-        else         return 'F';      */
+        else         return 'F';      
 }
-/*
-void input_all_records(int *size; struct Student S[*size], int *size)
-{
-        
-        printf("\nSize = %d",*size);
-        struct Student *cur=S;
-        
-        printf("\nSize = %d",*size);
-        for(int i=0; i<size; ++i,++cur)
-        {
-            input_record(cur);
-            output_record(cur);
-        }
-}*/
 
 void input_all_records(int size, struct Student *arr)
 {
         struct Student *cur = arr;
         for(int i=0; i<size; ++i, ++cur)
         {
+                clrscr();
                 printf("\nFor Student %d,",i+1);
                 input_record(cur);
         }
@@ -94,7 +83,7 @@ int linear_search(int size, struct Student *arr, int item)
         return -1;
 }
 
-void output_pos(int size, int *arr, int pos)
+void output_pos(int size, struct Student arr[size], int pos)
 {
         
         if(pos==-1)
@@ -103,7 +92,7 @@ void output_pos(int size, int *arr, int pos)
         }
         else
         {
-                output_record(arr[pos]);
+                output_record(&arr[pos-1]);
         }
 }
 
@@ -116,14 +105,14 @@ int main()
         input_all_records(size,S);
         
         do{
-                input_item(&item);  
+                clrscr();
+                input_item(&item);
                 output_pos( size, S, linear_search(size,S,item) );
-                
+
                 scanf("%c",&yn);//Inputs unnecessary newline char
                 printf("\nSearch Again ? ( Y->Yes / N->No ) : ");
                 scanf("%c",&yn);
                 
         }while(yn=='y'||yn=='Y');
-        
         return 0;
 }

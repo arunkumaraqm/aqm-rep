@@ -4,4 +4,7 @@ void main()
   printf("Hello World");
 	
 }
+ int divide(){
 
+	return 5/3;
+ }

@@ -2,5 +2,9 @@
 void main()
 {
   printf("Hello World");
-	// Nice
+	
+}
+
+void function(){
+	printf("\nIn the function");
 }

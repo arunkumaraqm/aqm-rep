@@ -8,3 +8,8 @@ void main()
 
 	return 5/3;
  }
+
+ int multiply()
+ {
+ 	return 7*7;
+ }

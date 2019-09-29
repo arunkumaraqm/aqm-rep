@@ -5,6 +5,3 @@ void main()
 	
 }
 
-void function(){
-	printf("\nIn the function");
-}
